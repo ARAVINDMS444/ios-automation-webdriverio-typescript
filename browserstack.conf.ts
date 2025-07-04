@@ -15,7 +15,6 @@ export const config: WebdriverIO.Config = {
         testObservabilityOptions: {
           buildName: "swag-labs-demo",
           projectName: "iOS Browserstack Test",
-          buildTag: ["Tag1", "Tag2"],
         },
       },
     ],
