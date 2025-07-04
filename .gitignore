@@ -1,0 +1,15 @@
+# Dependency directories
+node_modules/
+
+# Report and logs directories
+reports/
+logs/
+allure-results/
+allure-report/
+
+# JetBrains IDE project files
+.idea/
+*.iml
+
+# macOS specific files
+.DS_Store
