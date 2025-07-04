@@ -13,7 +13,7 @@ export const config: WebdriverIO.Config = {
         app: "bs://c45607616e7230ab80614fd4ff7936fc37f12962",
         accessibility: false,
         testObservabilityOptions: {
-          buildName: "swag-labs-demo",
+          buildName: "swag-labs-demo-iOS",
           projectName: "iOS Browserstack Test",
         },
       },
