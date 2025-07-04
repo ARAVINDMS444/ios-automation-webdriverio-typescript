@@ -58,7 +58,7 @@ export const config: WebdriverIO.Config = {
   framework: "mocha",
   mochaOpts: {
     ui: "bdd",
-    timeout: 2400000,
+    timeout: 2400000, // 40 minutes
   },
 
   reporters: [
