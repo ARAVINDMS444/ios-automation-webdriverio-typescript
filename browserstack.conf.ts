@@ -72,4 +72,7 @@ export const config: WebdriverIO.Config = {
       },
     ],
   ],
+
+  specFileRetries: 2,
+  specFileRetriesDeferred: false,
 };
