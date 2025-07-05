@@ -1,5 +1,5 @@
-import {Helpers} from "./src/utils/Helpers.ts";
-import {TestData} from "./src/utils/TestData.ts";
+import { Helpers } from "./src/utils/Helpers.ts";
+import { TestData } from "./src/utils/TestData.ts";
 
 export const config: WebdriverIO.Config = {
   runner: "local",

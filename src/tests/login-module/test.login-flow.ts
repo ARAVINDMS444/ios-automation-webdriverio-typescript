@@ -1,4 +1,4 @@
-import {expect} from "@wdio/globals";
+import { expect } from "@wdio/globals";
 
 describe("Swag Labs Mobile App - Login Flow", () => {
   it("should login successfully with valid credentials", async () => {
