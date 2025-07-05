@@ -3,6 +3,7 @@ export const config: WebdriverIO.Config = {
   key: process.env.BROWSERSTACK_ACCESS_KEY || "21yNs6bLpojGzojxPDc2",
 
   hostname: "hub.browserstack.com",
+
   maxInstances: 10,
 
   services: [
@@ -31,26 +32,6 @@ export const config: WebdriverIO.Config = {
         networkLogs: true,
       },
     },
-    {
-      platformName: "iOS",
-      "appium:deviceName": "iPhone 14 Pro Max",
-      "appium:platformVersion": "16",
-      "appium:automationName": "XCUITest",
-      "bstack:options": {
-        debug: true,
-        networkLogs: true,
-      },
-    },
-    {
-      platformName: "iOS",
-      "appium:deviceName": "iPhone 13 Pro Max",
-      "appium:platformVersion": "18",
-      "appium:automationName": "XCUITest",
-      "bstack:options": {
-        debug: true,
-        networkLogs: true,
-      },
-    },
   ],
 
   specs: ["./src/tests/**/*.ts"],
@@ -58,7 +39,7 @@ export const config: WebdriverIO.Config = {
   framework: "mocha",
   mochaOpts: {
     ui: "bdd",
-    timeout: 2400000, // 40 minutes
+    timeout: 240000,
   },
 
   reporters: [

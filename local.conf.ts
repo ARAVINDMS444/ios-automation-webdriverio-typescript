@@ -1,5 +1,5 @@
-import { Helpers } from "./src/utils/Helpers.ts";
-import { TestData } from "./src/utils/TestData.ts";
+import {Helpers} from "./src/utils/Helpers.ts";
+import {TestData} from "./src/utils/TestData.ts";
 
 export const config: WebdriverIO.Config = {
   runner: "local",
@@ -45,10 +45,10 @@ export const config: WebdriverIO.Config = {
     ],
   ],
 
-  specFileRetries: 4,
+  specFileRetries: 2,
   specFileRetriesDeferred: false,
 
-  after: async () => {
+  after: async (): Promise<void> => {
     await Helpers.logOutFromApplication();
     await Helpers.closeApp(TestData.TEST_DATA.SWAG_LABS_DEMO_APP_BUNDLE_ID);
   },

@@ -1,10 +1,10 @@
-import { expect } from "@wdio/globals";
+import {expect} from "@wdio/globals";
 
-describe("Swag Labs Mobile App - Login Test", () => {
+describe("Swag Labs Mobile App - Login Flow", () => {
   it("should login successfully with valid credentials", async () => {
-    const usernameField = await $("~test-Username");
-    const passwordField = await $("~test-Password");
-    const loginButton = await $("~test-LOGIN");
+    const usernameField: ChainablePromiseElement = $("~test-Username");
+    const passwordField: ChainablePromiseElement = $("~test-Password");
+    const loginButton: ChainablePromiseElement = $("~test-LOGIN");
 
     await usernameField.waitForDisplayed({ timeout: 5000 });
     await usernameField.setValue("standard_user");
@@ -12,11 +12,11 @@ describe("Swag Labs Mobile App - Login Test", () => {
     await passwordField.setValue("secret_sauce");
     await loginButton.click();
 
-    const productsTitleById = await $("~test-PRODUCTS");
+    const productsTitleById: ChainablePromiseElement = $("~test-PRODUCTS");
     await productsTitleById.waitForDisplayed({ timeout: 5000 });
     await expect(productsTitleById).toBeDisplayed();
 
-    const productsTitleByXPath = await $(
+    const productsTitleByXPath: ChainablePromiseElement = $(
       '//XCUIElementTypeStaticText[@name="PRODUCTS"]',
     );
     await productsTitleByXPath.waitForDisplayed({ timeout: 5000 });
