@@ -49,7 +49,6 @@ export const config: WebdriverIO.Config = {
   specFileRetriesDeferred: false,
 
   after: async (): Promise<void> => {
-    await Helpers.logOutFromApplication();
     await Helpers.closeApp(TestData.TEST_DATA.SWAG_LABS_DEMO_APP_BUNDLE_ID);
   },
 };
