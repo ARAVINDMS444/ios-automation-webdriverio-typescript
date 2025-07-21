@@ -1,25 +1,22 @@
-import { expect } from "@wdio/globals";
+import { Actions } from "../utils/Actions.ts";
+import { TestData } from "../utils/TestData.ts";
+import { LoginPage } from "../pageobjects/LoginPage.ts";
 
-describe("Swag Labs iOS App - Login Flow", () => {
-  it("should login successfully with valid credentials", async () => {
-    const usernameField: ChainablePromiseElement = $("~test-Username");
-    const passwordField: ChainablePromiseElement = $("~test-Password");
-    const loginButton: ChainablePromiseElement = $("~test-LOGIN");
-
-    await usernameField.waitForDisplayed({ timeout: 5000 });
-    await usernameField.setValue("standard_user");
-
-    await passwordField.setValue("secret_sauce");
-    await loginButton.click();
-
-    const productsTitleById: ChainablePromiseElement = $("~test-PRODUCTS");
-    await productsTitleById.waitForDisplayed({ timeout: 5000 });
-    await expect(productsTitleById).toBeDisplayed();
-
-    const productsTitleByXPath: ChainablePromiseElement = $(
-      '//XCUIElementTypeStaticText[@name="PRODUCTS"]',
+describe("Swag Labs iOS App - Login Flow", (): void => {
+  it("should login successfully with valid credentials", async (): Promise<void> => {
+    await Actions.waitForElementToBeDisplayed(LoginPage.usernameField);
+    await Actions.enterText(
+      LoginPage.usernameField,
+      TestData.TEST_DATA.username,
     );
-    await productsTitleByXPath.waitForDisplayed({ timeout: 5000 });
-    await expect(productsTitleByXPath).toBeDisplayed();
+    await Actions.enterText(
+      LoginPage.passwordField,
+      TestData.TEST_DATA.password,
+    );
+    await Actions.tapOnElement(LoginPage.loginButton);
+    await Actions.waitForElementToBeDisplayed(LoginPage.productsTitleById);
+    await Actions.isElementDisplayed(LoginPage.productsTitleById);
+    await Actions.waitForElementToBeDisplayed(LoginPage.productsTitleByXPath);
+    await Actions.assertElementIsVisible(LoginPage.productsTitleByXPath);
   });
 });
