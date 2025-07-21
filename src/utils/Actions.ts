@@ -180,7 +180,7 @@ export class Actions {
     await driver.execute("mobile: scroll", {
       direction: "down",
       strategy: "xpath",
-      selector: `//*[contains(., '${text}')]`, // Scrolls to the element that contains the visible text.
+      selector: `//*[contains(., '${text}')]`,
     });
   }
 
@@ -194,7 +194,7 @@ export class Actions {
     timeout: number = 50000,
   ): Promise<void> {
     await element.waitForDisplayed({ timeout });
-    const isDisplayed = await element.isDisplayed();
+    const isDisplayed: boolean = await element.isDisplayed();
     expect(isDisplayed).toBeTruthy();
   }
 
@@ -224,7 +224,7 @@ export class Actions {
   static async isElementDisplayed(
     element: ChainablePromiseElement,
   ): Promise<void> {
-    const isDisplayed = await element.isDisplayed();
+    const isDisplayed: boolean = await element.isDisplayed();
     expect(isDisplayed).toBeTruthy();
   }
 
@@ -238,7 +238,7 @@ export class Actions {
     timeout: number = 50000,
   ): Promise<void> {
     await element.waitForDisplayed({ timeout, reverse: true });
-    const isDisplayed = await element.isDisplayed();
+    const isDisplayed: boolean = await element.isDisplayed();
     expect(isDisplayed).toBeFalsy();
   }
 
@@ -248,7 +248,10 @@ export class Actions {
    */
   static getUdid(): string {
     try {
-      const devices = execSync("idevice_id -l").toString().trim().split("\n");
+      const devices: string[] = execSync("idevice_id -l")
+        .toString()
+        .trim()
+        .split("\n");
       if (devices.length > 0) {
         return devices[0];
       } else {
