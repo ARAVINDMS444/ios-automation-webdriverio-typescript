@@ -1,7 +1,7 @@
 // Test Scenario
-// 1. Login to Swag labs app.
-// 2. Select the cheapest product.
-// 3. Add the cheapest product to the cart.
+// 1. Login to Swag labs app
+// 2. Select the cheapest product
+// 3. Add the cheapest product to the cart
 // 4. Fill payment details
 // 5. Complete the order
 // 6. Verify success message

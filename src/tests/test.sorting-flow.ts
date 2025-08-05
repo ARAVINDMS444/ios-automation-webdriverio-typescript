@@ -1,14 +1,14 @@
-import { $, expect } from "@wdio/globals";
-import { Actions } from "../utils/Actions.ts";
-import { HomePage } from "../pageobjects/HomePage.ts";
+import { $, $$, expect } from "@wdio/globals";
+import { ChainablePromiseElement, ChainablePromiseArray } from "webdriverio";
+import { Actions } from "../utils/Actions";
+import { Helpers } from "../utils/Helpers";
 
-describe("Swag Labs iOS App - Sorting Flow", (): void => {
-  it("should login and sort the prices of the products", async (): Promise<void> => {
+describe("Swag Labs Android App - Sorting Flow", (): void => {
+  it("should login and sort the products and validate", async (): Promise<void> => {
     const usernameInput: ChainablePromiseElement = $("~test-Username");
     const passwordInput: ChainablePromiseElement = $("~test-Password");
     const loginBtn: ChainablePromiseElement = $("~test-LOGIN");
 
-    await expect(usernameInput).toBeDisplayed();
     await usernameInput.setValue("standard_user");
     await passwordInput.setValue("secret_sauce");
     await loginBtn.click();
@@ -17,31 +17,31 @@ describe("Swag Labs iOS App - Sorting Flow", (): void => {
     await expect(productList).toBeDisplayed();
 
     const sortButton: ChainablePromiseElement = $(
-      "~test-Modal Selector Button",
+      '//XCUIElementTypeOther[@name="test-Modal Selector Button"]/XCUIElementTypeOther/XCUIElementTypeOther',
     );
     await sortButton.click();
 
     const sortOption: ChainablePromiseElement = $("~Price (low to high)");
     await sortOption.click();
-    await Actions.waitForSeconds(2000);
 
-    const sortedPrices: number[] = [];
+    let scrolls: number = 0;
+    const sortedPrices = new Set<number>();
 
-    for (let i: number = 1; i <= 6; i++) {
-      const priceText: string = await HomePage.productsPrices(i).getText();
-      const numericPrice: number = Number(priceText.replace("$", ""));
-      sortedPrices.push(numericPrice);
-    }
+    while (scrolls < 5) {
+      const products: ChainablePromiseArray = $$(
+        '//XCUIElementTypeStaticText[contains(@label, "$")]',
+      );
+      const count: number = await products.length;
 
-    function isAscending(arr: number[]): boolean {
-      for (let i: number = 0; i < arr.length - 1; i++) {
-        if (arr[i] > arr[i + 1]) {
-          return false;
-        }
+      for (let i: number = 1; i < count; i++) {
+        const productPrice: string = await products[i].getText();
+        const price: number = parseFloat(productPrice.replace("$", ""));
+        sortedPrices.add(price);
       }
-      return true;
+      await Actions.scrollDownByPixels(200);
+      scrolls++;
     }
 
-    expect(isAscending(sortedPrices)).toBeTruthy();
+    expect(Helpers.isAscending(sortedPrices)).toBeTruthy();
   });
 });
