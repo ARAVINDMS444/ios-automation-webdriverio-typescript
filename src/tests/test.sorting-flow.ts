@@ -33,7 +33,7 @@ describe("Swag Labs Android App - Sorting Flow", (): void => {
       );
       const count: number = await products.length;
 
-      for (let i: number = 1; i < count; i++) {
+      for (let i: number = 0; i < count; i++) {
         const productPrice: string = await products[i].getText();
         const price: number = parseFloat(productPrice.replace("$", ""));
         sortedPrices.add(price);

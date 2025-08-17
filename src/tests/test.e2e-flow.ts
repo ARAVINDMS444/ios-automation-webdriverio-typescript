@@ -25,7 +25,7 @@ describe("Swag Labs iOS App - E2E Flow", (): void => {
     const count: number = await productList.length;
     const products: any[] = [];
 
-    for (let i: number = 1; i < count; i++) {
+    for (let i: number = 0; i < count; i++) {
       const priceText: string = await productList[i].getText();
       const numericPrice: number = Number(priceText.replace("$", ""));
       products.push({ price: numericPrice, index: i });
